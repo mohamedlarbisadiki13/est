@@ -37,7 +37,7 @@
 
 <script type="text/javascript">
 
-	const map = L.map('map').setView([37.8, -96], 4);
+	const map = L.map('map').setView([31.79, -7.09], 6);
 
 	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
@@ -54,8 +54,16 @@
 	};
 
 	info.update = function (props) {
-		const contents = props ? `<b>${props.nom_region}</b><br />${props.Populatio} people / mi<sup>2</sup>` : 'Hover over a state';
-		this._div.innerHTML = `<h4>US Population Density</h4>${contents}`;
+    // Replace 'props.area' with the actual property name from your file
+    const new_property = props.area; // e.g., props.surface_area, props.code, etc.
+
+    const contents = props ?
+        `<b>${props.nom_region}</b><br />` +
+        `${props.Populatio} people<br />` +
+        `${props.Marocains} km<sup>2</sup>` // Customize this line and its units
+        : 'Hover over a region'; // Changed from "Hover over a state"
+
+    this._div.innerHTML = `<h4>Morocco Population</h4>${contents}`; // Changed title
 	};
 
 	info.addTo(map);
